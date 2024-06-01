@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Application</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            background-color: black;
+            color: white;
+            text-align: center;
+            background-image: url(https://4kwallpapers.com/images/wallpapers/moon-stars-purple-2732x2732-11331.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+        }
+        h1 {
+            font-size: 45px;
+        }
+        input {
+            width: 75px;
+            height: 50px;
+            font-size: 15px;
+            border-radius: 10px;
+            margin: 10px;
+            background-color: white;
+            color: black;
+            border-style: none  ;
+        }
+        .btn:hover {
+            background-color: yellow;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Calculator App</h1>
+    <input type="text" id="result" style="width: 370px; height: 70px; background-color: #4c555c;">
+    <br>
+    <input type="button" value="⌫" class="num-btn operator-btn" onclick="deleteLast()">
+    <input type="button" value="↻" style="background-color: red;" class="num-btn operator-btn" onclick="clearInput()">
+    <br>
+    <input type="button" value="1" class="num-btn" onclick="appendNum(1)">
+    <input type="button" value="2" class="num-btn" onclick="appendNum(2)">
+    <input type="button" value="3" class="num-btn" onclick="appendNum(3)">
+    <input type="button" value="÷" style="background-color: #cc5c11;" class="num-btn operator-btn" onclick="divide()">
+    <br>
+    <input type="button" value="4" class="num-btn" onclick="appendNum(4)">
+    <input type="button" value="5" class="num-btn" onclick="appendNum(5)">
+    <input type="button" value="6" class="num-btn" onclick="appendNum(6)">
+    <input type="button" value="x" style="background-color: #ba55d3;" class="num-btn operator-btn" onclick="multiply()">
+    <br>
+    <input type="button" value="7" class="num-btn" onclick="appendNum(7)">
+    <input type="button" value="8" class="num-btn" onclick="appendNum(8)">
+    <input type="button" value="9" class="num-btn" onclick="appendNum(9)">
+    <input type="button" value="-" style="background-color: #7db1b2;" class="num-btn operator-btn" onclick="subtract()">
+    <br>
+    <input type="button" value="." class="num-btn" onclick="appendNum('.')">
+    <input type="button" value="0" class="num-btn" onclick="appendNum(0)">
+    <input type="button" value="=" class="num-btn operator-btn" onclick="calculate()">
+    <input type="button" value="+" style="background-color: #1f80c9;" class="num-btn operator-btn" onclick="add()">
+
+    <script>
+        let currentInput="";
+        let currentOperator="";
+
+        function appendNum(number) {
+            currentInput += number;
+            document.getElementById("result").value=currentInput;
+        }
+        function add(number) {
+            currentOperator = "+";
+            currentInput += currentOperator;
+            document.getElementById("result").value=currentInput;
+        }
+        function multiply(number) {
+            currentOperator = "*";
+            currentInput += currentOperator;
+            document.getElementById("result").value=currentInput;
+        }
+        function subtract(number) {
+            currentOperator = "-";
+            currentInput += currentOperator;
+            document.getElementById("result").value=currentInput;
+        }
+        function divide(number) {
+            currentOperator = "/";
+            currentInput += currentOperator;
+            document.getElementById("result").value=currentInput;
+        }
+        function calculate() {
+            try {
+                const result = eval(currentInput);
+                document.getElementById("result").value = result;
+                currentInput= result.toString();
+            } catch (error) {
+                document.getElementById("result").value = "Error";
+                currentInput="";
+            }
+        }
+        function clearInput() {
+            currentOperator="";
+            currentInput="";
+            document.getElementById("result").value="";
+        }
+        function deleteLast() {
+            currentInput=currentInput.slice(0,-1);
+            document.getElementById("result").value = currentInput;
+        }
+    </script>
+</body>
+</html>
